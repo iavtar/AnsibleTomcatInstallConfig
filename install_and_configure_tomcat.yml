@@ -31,3 +31,9 @@
           src: "/usr/local/apache-tomcat-{{tomcat_version}}.tar.gz"
           dest: /usr/local
           remote_src: yes
+      - name: Removing previous tomcat folder
+        command: rm -rf /usr/local/latest
+      - name: Renaming tomcat folder
+        command: mv /usr/local/apache-tomcat-{{tomcat_version}} /usr/local/latest
+      - name: Starting tomcat
+        shell: nohup /usr/local/latest/bin/startup.sh &
