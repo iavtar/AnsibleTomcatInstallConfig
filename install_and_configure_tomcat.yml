@@ -25,4 +25,9 @@
       - name: Downloading Tomcat
         get_url:
           url: "{{tomcat_url}}"
-          dest: /opt
+          dest: /usr/local
+      - name: Extracting tomcat
+        unarchive:
+          src: "/usr/local/apache-tomcat-{{tomcat_version}}.tar.gz"
+          dest: /usr/local
+          remote_src: yes
